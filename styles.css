@@ -1,0 +1,56 @@
+* {
+  padding: 0;	/*dolgu*/
+  margin: 0;	/*kenar boşluğu*/
+  box-sizing: border-box;	/*kutu boyutu*/
+}
+
+body {
+  height: 70vh;		/*vh = viewport height; visible area of the page*/
+  display: flex;
+  background: #008000;	/*background color*/
+}
+
+.memory-game {	/*whole game board*/
+  width: 500px;
+  height: 500px;
+  margin: auto;	/*moves the game board to center of the page*/
+  display: flex;	/*makes order of the cards proper on the screen*/
+  flex-wrap: wrap;	/*removes the part of 'nowrap' in the flex container*/
+  perspective: 1000px;
+}
+
+.memory-card {	/*each card of the game*/
+  width: calc(25% - 12px);	/*with margin value*/
+  height: calc(33% - 12px);
+  margin: 5px;	/*creates available space for the cards to move*/
+  position: relative; /*positioned at the beginning*/
+  transform: scale(1); /*when clicked, card gonna get smaller a bit as an effect*/
+  transform-style: preserve-3d;
+  transition: transform .5s;
+  box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+}
+
+.memory-card:active {	/*click effect*/
+  transform: scale(0.97);
+  transition: transform .2s;
+}
+
+.memory-card.flip {
+  transform: rotateY(180deg);
+}
+
+.front-face,
+.back-face { /*faces of each cards*/
+  width: 100%;
+  height: 100%;
+  padding: 1px;
+  position: absolute;	/*finds appropriate position according to its relative*/
+  border-radius: 6px;
+  background: #FFFFFF;	/*color*/
+  backface-visibility: hidden;
+}
+
+
+.front-face {
+  transform: rotateY(180deg);
+}
